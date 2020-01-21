@@ -86,6 +86,16 @@ app.put("/blogs/:id", function(req, res) {
   });
 });
 
+app.delete("/blogs/:id", function(req, res) {
+  Blog.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect("/blogs");
+    }
+  });
+});
+
 app.get("*", function(req, res) {
   res.send("nothing there bro");
 });
